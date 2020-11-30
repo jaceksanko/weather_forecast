@@ -16,7 +16,7 @@ export const getWeatherError = (error) => ({
     payload: error
 })
 
-export const fetchData = (apiUrl = 'http://api.weatherapi.com/v1/forecast.json?key=37a1b8ed12fd4e60a78203701202411&q=Warszawa&days=3') => {
+export const fetchData = (apiUrl = `http://api.weatherapi.com/v1/forecast.json?key=${process.env.API_KEY}&q=Warszawa&days=3`) => {
     return dispatch => {
         dispatch(getWeatherStart());
         fetch(apiUrl)
