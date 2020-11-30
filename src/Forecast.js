@@ -46,7 +46,7 @@ function Forecast(props) {
             alert("Bad city name");
             return;
         }
-        props.fetchData(`http://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${inputSearchValue}&days=3`)
+        props.fetchData(`https://api.weatherapi.com/v1/forecast.json?key=${process.env.REACT_APP_API_KEY}&q=${inputSearchValue}&days=3`)
 
     }
 
