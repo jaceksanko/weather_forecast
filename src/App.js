@@ -1,16 +1,35 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {
+    BrowserRouter as Router,
+
+} from "react-router-dom";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import {fetchData} from "./redux/actionsCreator"
+import Forecast from "./Forecast";
 
 const AppStyled = styled.div`
   text-align: center;
 `;
 
-function App() {
+function App(props) {
+    useEffect(() => {
+        props.fetchData()
+    }, [])
   return (
-    <AppStyled>
-        Test
-    </AppStyled>
+      <Router>
+        <AppStyled>
+            {props.weather && <Forecast/>}
+        </AppStyled>
+      </Router>
   );
 }
+const mapStateToProps = state => ({
+    weather: state.weather
+});
 
-export default App;
+const mapDispatchToProps = dispatch => ({
+    fetchData: (apiUrl) => dispatch(fetchData(apiUrl))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
